@@ -7,8 +7,4 @@ module Sepparator
     Console.start(args)
   end
 
-  def spreadsheet_converter(opts = Hash.new)
-    SpreadsheetConverter.new(opts)
-  end
-
 end

@@ -26,7 +26,7 @@ module Sepparator
     LONGDESC
     def convert(csv_path, xls_path=nil)
       xls_path ||= csv_path.gsub(/\.csv/, '.xlsx')
-      converter = Sepparator.spreadsheet_converter(col_sep: options['col_sep'] || "\t")
+      converter = SpreadsheetConverter.new(col_sep: options['col_sep'] || "\t")
 
       File.unlink(xls_path) if File.exists?(xls_path) && options.include?('force')
 
