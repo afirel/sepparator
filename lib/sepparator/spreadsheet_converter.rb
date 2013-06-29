@@ -16,7 +16,7 @@ module Sepparator
       raise ArgumentError, "file not found: #{csv_path}" unless File.exists?(csv_path)
       SimpleXlsx::Serializer.new(xls_path) do |doc|
         doc.add_sheet(sheet_name || 'from CSV') do |sheet|
-          CSV.foreach(csv_path, col_sep: col_sep, converters: :all) do |csv_row|
+          CSV.foreach(csv_path, col_sep: col_sep, converters: [:numeric, :date_time, :date]) do |csv_row|
             sheet.add_row(csv_row)
           end
         end
