@@ -38,11 +38,11 @@ describe Sepparator::SchemaDetector do
       schema = subject.for_array(input)
       expect(schema[:integer]).to eq(Object)
     end
-    it 'raises when different width entries are given' do
-      different_width = hash.dup.merge({extra: 'extra-column'})
-      different_width.delete(:integer) # remove one column
-      input = 10.times.map { |_| hash } + [different_width]
-      expect {subject.for_array(input)}.to raise_error(ArgumentError, "different width entries not (yet) supported")
+    it 'raises when different key entries are given' do
+      different_keys = hash.dup.merge({extra: 'extra-column'})
+      different_keys.delete(:integer) # remove one column
+      input = 10.times.map { |_| hash } + [different_keys]
+      expect {subject.for_array(input)}.to raise_error(ArgumentError, "different key entries not (yet) supported")
     end
     it 'ignores nil values' do
       input = [hash.dup.merge({date: nil})] + 10.times.map { |_| hash } + [hash.dup.merge({integer: nil})]
