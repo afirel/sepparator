@@ -1,5 +1,14 @@
-sepparator
-==========
+sepparator - separating value from commata
+===========================================
+
+Simple CSV pocket-knife-tool.
+
+Features:
+---------
+* convert CSV to Excel format and detect datatypes
+
+Tries to detect appropriate datatypes and therefore you might get rid of the CSV-like question "what's decimal separator?".
+
 
 ```
 Usage:
