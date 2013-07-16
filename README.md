@@ -6,6 +6,7 @@ Simple CSV pocket-knife-tool.
 Features:
 ---------
 * convert CSV to Excel format and detect datatypes
+* (not yet implemented:) Detect CSV schema, create database table and load the file automatically
 
 Tries to detect appropriate datatypes and therefore you might get rid of the CSV-like question "what's decimal separator?".
 
