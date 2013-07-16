@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sepparator (0.0.2)
+    sepparator (0.0.3)
       simple_xlsx_writer
       thor
 
