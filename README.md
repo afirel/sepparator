@@ -1,2 +1,28 @@
 sepparator
 ==========
+
+```
+Usage:
+  sepp convert CSV XLS 
+
+Options:
+  -s, [--col-sep=\t]  # CSV column separator, defaults to tab-separated values
+  -f, [--force]       # overwrite existing files
+
+Description:
+  `sepp convert` converts a CSV file to a xlsx file.
+
+  Parameters:
+
+  CSV - path to a CSV file (required)
+
+  XLS - destination path for excel file (optional)
+   Use --force to overwrite existing files.
+   If XLS is ommited, sepp will create the excel file alongside the csv using the .xlsx extension.
+
+  Options:
+
+  --col_sep - CSV column separation character(s)
+
+  --force - overwrite destination files if necessary
+```
