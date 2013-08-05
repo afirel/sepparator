@@ -22,9 +22,6 @@ describe Sepparator::SpreadsheetConverter do
       subject
       expect(File.exists?(xls_path)).to be_true
     end
-    it 'raises when the destination file already exists' do
-      expect{described_class.new.convert(Tempfile.new('blafoo2').path, Tempfile.new('blafoo').path)}.to raise_error(ArgumentError, /destination file exists/)
-    end
   end
   context '#convert' do
     let(:xls_path) { '/tmp/example.xlsx' }
@@ -45,9 +42,6 @@ describe Sepparator::SpreadsheetConverter do
       expect{described_class.new.convert('/some/non/existing/file.csv', xls_path)}.to raise_error(ArgumentError, /file not found/)
     end
 
-    it 'raises when the destination file already exists' do
-      expect{described_class.new.convert(Tempfile.new('blafoo2').path, Tempfile.new('blafoo').path)}.to raise_error(ArgumentError, /destination file exists/)
-    end
   end
 
 end

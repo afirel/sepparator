@@ -30,7 +30,6 @@ module Sepparator
 
     private
     def create_xlsx(xls_path, sheet_name)
-      raise ArgumentError, "destination file exists: #{xls_path}" if File.exists?(xls_path)
       SimpleXlsx::Serializer.new(xls_path) do |doc|
         doc.add_sheet(sheet_name || 'from CSV') do |sheet|
           yield sheet
