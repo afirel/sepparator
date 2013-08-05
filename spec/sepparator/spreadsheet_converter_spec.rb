@@ -10,6 +10,22 @@ describe Sepparator::SpreadsheetConverter do
     expect(described_class.new(col_sep: sep).col_sep).to eq(sep)
   end
 
+  context '#convert_from_string' do
+    let(:csv_string) { File.open(File.join(__dir__, 'example.csv')).read }
+    let(:xls_path) { Tempfile.new('convert-to-xlsx').path }
+    subject { described_class.new.convert_from_string(csv_string, xls_path) }
+
+    before { FileUtils.rm_f xls_path }
+
+    it "converts a csv string" do
+      # don't comparing xlsx files here
+      subject
+      expect(File.exists?(xls_path)).to be_true
+    end
+    it 'raises when the destination file already exists' do
+      expect{described_class.new.convert('/some/non/existing/file.csv', Tempfile.new('blafoo').path)}.to raise_error(ArgumentError, /destination file exists/)
+    end
+  end
   context '#convert' do
     #let(:xls_path) { Tempfile.new('convert-to-xlsx')}
     let(:xls_path) { '/tmp/example.xlsx' }
