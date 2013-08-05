@@ -8,7 +8,7 @@ describe Sepparator do
       csv_path = 'foo/bar.csv'
       xls_path = 'bla/fu.xls'
       sheet_name = 'my sheet'
-      converter = stub
+      converter = double
       Sepparator::SpreadsheetConverter.should_receive(:new).with(col_sep: col_sep).and_return(converter)
       converter.should_receive(:convert).with(csv_path, xls_path, sheet_name: sheet_name)
 
