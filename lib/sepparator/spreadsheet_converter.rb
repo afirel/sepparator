@@ -23,6 +23,17 @@ module Sepparator
       end
     end
 
+    def convert_from_string(csv_string, xls_path, sheet_name: 'from CSV')
+      raise ArgumentError, "destination file exists: #{xls_path}" if File.exists?(xls_path)
+      SimpleXlsx::Serializer.new(xls_path) do |doc|
+        doc.add_sheet(sheet_name || 'from CSV') do |sheet|
+          CSV.parse(csv_string, col_sep: col_sep, converters: [:numeric, :date_time, :date]) do |csv_row|
+            sheet.add_row(csv_row)
+          end
+        end
+      end
+    end
+
   end
 
 end
