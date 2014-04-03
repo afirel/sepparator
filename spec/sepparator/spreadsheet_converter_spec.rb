@@ -22,6 +22,14 @@ describe Sepparator::SpreadsheetConverter do
       subject
       expect(File.exists?(xls_path)).to be_true
     end
+
+    context 'converts encoding independent' do
+      let(:csv_string) { "test \u00A9 foo" }
+      it 'converts a UTF-8 string' do
+        subject
+        expect(File.exists?(xls_path)).to be_true
+      end
+    end
   end
   context '#convert' do
     let(:xls_path) { '/tmp/example.xlsx' }
@@ -36,6 +44,23 @@ describe Sepparator::SpreadsheetConverter do
       # don't comparing xlsx files here
       subject
       expect(File.exists?(xls_path)).to be_true
+    end
+
+    context 'converts encoding independent' do
+      let(:csv_file) { create_temp_file_with_utf8_chars }
+      let(:csv_path) { csv_file.path }
+
+      def create_temp_file_with_utf8_chars
+        tf = Tempfile.new("test_with_utf8_chars")
+        tf.write "test \u00A9 foo"
+        tf.close
+        tf
+      end
+
+      it 'supports UTF-8 CSV files' do
+        subject
+        expect(File.exists?(xls_path)).to be_true
+      end
     end
 
     it 'raises when the source file was not found' do
