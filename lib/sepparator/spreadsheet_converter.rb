@@ -14,7 +14,7 @@ module Sepparator
     def convert(csv_path, xls_path, sheet_name: 'from CSV')
       raise ArgumentError, "file not found: #{csv_path}" unless File.exists?(csv_path)
       create_xlsx(xls_path, sheet_name) do |sheet|
-        CSV.foreach(csv_path, col_sep: col_sep, converters: [:numeric, :date_time, :date]) do |csv_row|
+        CSV.foreach(csv_path, col_sep: col_sep, converters: [:numeric, :date_time, :date], encoding: 'UTF-8') do |csv_row|
           sheet.add_row(csv_row)
         end
       end
@@ -22,7 +22,7 @@ module Sepparator
 
     def convert_from_string(csv_string, xls_path, sheet_name: 'from CSV')
       create_xlsx(xls_path, sheet_name) do |sheet|
-        CSV.parse(csv_string, col_sep: col_sep, converters: [:numeric, :date_time, :date]) do |csv_row|
+        CSV.parse(csv_string, col_sep: col_sep, converters: [:numeric, :date_time, :date], encoding: 'UTF-8') do |csv_row|
           sheet.add_row(csv_row)
         end
       end
