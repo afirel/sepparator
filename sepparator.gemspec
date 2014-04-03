@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "sepparator"
-  spec.version       = '0.0.5'
+  spec.version       = '0.0.6'
   spec.authors       = ["Andreas Brandl"]
   spec.email         = ["github@andreas-brandl.de"]
   spec.description   = %q{tool for working with CSV files, it supports conversion to Excel files and import to databases.}
